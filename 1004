@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+struct student{
+  char name[15];
+  char ID[15];
+  int mark;
+};
+
+typedef struct student st;
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  int i;
+  st student[n];
+  for (i=0; i<n; i++){
+    scanf("%s", student[i].name);
+    scanf("%s", student[i].ID);
+    scanf("%d", &student[i].mark);
+  }
+  int min=student[0].mark;
+  int max=student[0].mark;
+  int remark_min = 0;
+  int remark_max = 0;
+  for (i=0; i<n; i++){
+    if (student[i].mark>max){
+      max=student[i].mark;
+      remark_max=i;
+    }
+    if (student[i].mark<min){
+      min=student[i].mark;
+      remark_min=i;
+    }
+  }
+  printf("%s %s\n", student[remark_max].name, student[remark_max].ID);
+  printf("%s %s\n", student[remark_min].name, student[remark_min].ID);
+  return 0;
+}
