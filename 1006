@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int array[3];
+  int n;
+  scanf("%d", &n);
+  int i=0;
+  while(n>0){
+    array[i]=n%10;
+    n=(n-array[i])/10;
+    i++;
+  }
+  int j,t;
+  for(j=i-1; j>=0; j--){
+    if (j==2){
+      for(t=0; t<array[2]; t++){
+        printf("%c", 'B');
+      }
+    }else if(j==1){
+      for(t=0; t<array[1]; t++){
+        printf("%c", 'S');
+      }
+    }else{
+      for(t=1; t<=array[0]; t++){
+        printf("%d", t);
+      }
+    }
+  }
+  printf("\n");
+  return 0;
+}
