@@ -1,6 +1,10 @@
+// we should note that move may bigger than total.
+//so just let move = move%total
+
 #include <stdio.h>
 #include <stdlib.h>
 
+//way one in data structure
 typedef struct Number{
   int index;
   int value;
@@ -71,3 +75,24 @@ int main(int argc, char *argv[]){
   }
   printf_list(list);
 }
+
+//way two
+/*int main(){
+    int total, move;
+    scanf("%d", &total);
+    scanf("%d", &move);
+    move=move%total;
+    int i;
+    int array[total];
+    for(i=0; i<total; i++){
+        scanf("%d", &array[i]);
+    }
+    int sub=total-move;
+    for(i=sub; i<total; i++){
+        printf("%d%s", array[i], sub==0&&i==total-1?"":" ");
+    }
+    for(i=0; i<sub; i++){
+        printf("%d%s", array[i], i==sub-1?"":" ");
+    }
+    printf("\n");
+}*/
