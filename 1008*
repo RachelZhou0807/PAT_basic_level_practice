@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Number{
+  int index;
+  int value;
+  struct Number *next;
+}number;
+
+void add_list(number**list, int value, int index){
+    number *new_node;
+    new_node=(number*)malloc(sizeof(number));
+    if(new_node==NULL){
+        printf("No memory!\n");
+    }
+    new_node->index = index;
+    new_node->value = value;
+    new_node->next = NULL;
+    if(*list==NULL){
+        *list=new_node;
+    }else{
+        number *find;
+        find = *list;
+        while (find->next != NULL){
+            find=find->next;
+        }
+        find->next=new_node;
+    }
+}
+
+void change_list(number **list, int value){
+    number *find_pre;
+    find_pre = *list;
+    while(find_pre->next->index != value){
+        find_pre=find_pre->next;
+    }
+    number *find;
+    number *head;
+    head=find_pre->next;
+    find=find_pre->next;
+    while(find->next != NULL){
+        find=find->next;
+    }
+    find->next = *list;
+    find_pre->next=NULL;
+    *list=head;
+}
+
+void printf_list(number *list){
+    while(list!= NULL){
+        printf("%d%s",list->value, list->next==NULL?"":" ");
+        list=list->next;
+    }
+    printf("\n");
+}
+
+int main(int argc, char *argv[]){
+  number *list=NULL;
+  int total;
+  scanf("%d", &total);
+  int move;
+  scanf("%d", &move);
+  move=move%total;
+  int i, value;
+  for(i=0; i<total; i++){
+    scanf("%d", &value);
+    add_list(&list, value, i);
+  }
+  if(move!=0 && move < total){
+    change_list(&list, total-move);
+  }
+  printf_list(list);
+}
