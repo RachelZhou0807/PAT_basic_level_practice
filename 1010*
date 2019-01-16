@@ -19,4 +19,5 @@ int main(int argc, cahr*argv[]){
             printf("0 0");
         }
     }
+    return 0;
 }
