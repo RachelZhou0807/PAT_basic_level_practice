@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+int prime(int t){
+  int i;
+  int re=t;
+  for(i=2; i<=sqrt(t); i++){
+    if(t%i==0){
+      re=-1;
+    }
+  }
+  return re;
+}
+
+int main(){
+  int m,n;
+  scanf("%d%d", &m, &n);
+  int count=0;
+  int count_out=0;
+  int t=1;
+  while(count<n){
+    t++;
+    if(prime(t) != -1){
+      count++;
+      if(count>=m){
+        count_out++;
+        printf("%d%s", t, count_out%10==0||count==n?"\n":" ");
+      }
+    }
+  }
+  return 0;
+}
