@@ -1,0 +1,40 @@
+//the point is if I use gets(), there will have a warning.
+
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    char input[85];
+    gets(input);
+    int len;
+    len=strlen(input);
+    int i,j;
+    int count_number[80]={0};
+    int count=0;
+    for(i=0; i<len; i++){
+        if(input[i]==' '){
+            count_number[count]=i;
+            count++;
+        }
+    }
+    for(i=count; i>=0; i--){
+        if(i==count&&count!=0){
+            for(j=count_number[i-1]+1; j<len; j++){
+                printf("%c", input[j]);
+            }
+            printf(" ");
+        }else if(i==count&&count==0){
+            printf("%s\n", input);
+        }else if(i==0){
+            for(j=0; j<count_number[0]; j++){
+                printf("%c", input[j]);
+            }
+        }else{
+            for(j=count_number[i-1]+1; j<count_number[i]; j++){
+                printf("%c", input[j]);
+            }
+            printf(" ");
+        }
+    }
+    return 0;
+}
