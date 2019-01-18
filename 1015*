@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100001
+
+typedef struct{
+    int id;
+    int de;
+    int cai;
+    int sum;
+} info;
+
+int cmp(const void *a, const void *b){
+    info *m, *n;
+    m=(info*)a;
+    n=(info*)b;
+    if(m->sum!=n->sum){
+        return n->sum-m->sum;
+    }else if(m->de!=n->de){
+        return n->de-m->de;
+    }else{
+        return m->id-n->id;
+    }
+}
+
+void printflevel(info leve[], int size){
+    int i;
+    for(i=0; i<size; i++){
+        printf("%d %d %d\n", leve[i].id, leve[i].de, leve[i].cai);
+    }
+}
+
+int main(int argc, char *argv[]){
+    int n,l,h;
+    scanf("%d%d%d", &n, &l, &h);
+    info level1[MAX], level2[MAX], level3[MAX], level4[MAX], input;
+    int cnt_l1=0, cnt_l2=0, cnt_l3=0, cnt_l4=0;
+    int i;
+    int count=0;
+    for(i=0; i<n; i++){
+        scanf("%d%d%d", &input.id, &input.de, &input.cai);
+        input.sum=input.de+input.cai;
+        if(input.de<l||input.cai<l){
+            continue;
+        }else{
+            count++;
+            if(input.de>=h&&input.cai>=h){
+                level1[cnt_l1]=input;
+                cnt_l1++;
+            }else if(input.de>=h){
+                level2[cnt_l2]=input;
+                cnt_l2++;
+            }else if(input.de>=input.cai){
+                level3[cnt_l3]=input;
+                cnt_l3++;
+            }else{
+                level4[cnt_l4]=input;
+                cnt_l4++;
+            }
+        }
+    }
+    qsort(level1, cnt_l1, sizeof(info), cmp);
+    qsort(level2, cnt_l2, sizeof(info), cmp);
+    qsort(level3, cnt_l3, sizeof(info), cmp);
+    qsort(level4, cnt_l4, sizeof(info), cmp);
+    printf("%d\n", cnt_l1+cnt_l2+cnt_l3+cnt_l4);
+    printflevel(level1, cnt_l1);
+    printflevel(level2, cnt_l2);
+    printflevel(level3, cnt_l3);
+    printflevel(level4, cnt_l4);
+    return 0;
+}
