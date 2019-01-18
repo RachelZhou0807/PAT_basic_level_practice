@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main(){
+  int input1[2];
+  int input2[2];
+  scanf("%d%d%d%d", &input1[0], &input1[1], &input2[0], &input2[1]);
+  int output[2]={0,0}, out=0;
+  while(input1[0]>0){
+    if(input1[0]%10==input1[1]){
+      output[0]=10*output[0]+input1[1];
+    }
+    input1[0]/=10;
+  }
+  while(input2[0]>0){
+    if(input2[0]%10==input2[1]){
+      output[1]=10*output[1]+input2[1];
+    }
+    input2[0]/=10;
+  }
+  out=output[0]+output[1];
+  printf("%d\n", out);
+  return 0;
+}
