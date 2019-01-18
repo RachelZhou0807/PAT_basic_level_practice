@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+  char input[4][60];
+  int i;
+  for(i=0; i<4; i++){
+    scanf("%s", input[i]);
+  }
+  int len[4];
+  for(i=0; i<4; i++){
+    len[i]=strlen(input[i]);
+  }
+  int length;
+  if(len[0]>len[1]){
+    length=len[1];
+  }else{
+    length=len[0];
+  }
+  char output[2];
+  int flag=0;
+  for(i=0; i<length; i++){
+    if(input[0][i]<='G'&&input[0][i]>='A'&&input[1][i]<='G'&&input[1][i]>='A'&&input[0][i]==input[1][i]&&flag==0){
+      output[0]=input[0][i];
+      flag=1;
+      i++;
+    }
+    if( ((input[0][i]<='N'&&input[0][i]>='A')||(input[0][i]<='9'&&input[0][i]>='0')) && ((input[1][i]<='N'&&input[1][i]>='A')||(input[1][i]<='9'&&input[1][i]>='0'))&&input[0][i]==input[1][i]&&flag==1){
+      output[1]=input[0][i];
+      flag++;
+      break;
+    }
+  }
+  
+  if(len[2]>len[3]){
+    length=len[3];
+  }else{
+    length=len[2];
+  }
+  flag=0;
+  int output_3;
+  for(i=0; i<length; i++){
+    if( ((input[2][i]<='Z'&&input[2][i]>='A')||(input[2][i]<='z'&&input[2][i]>='a')) && ((input[3][i]<='Z'&&input[3][i]>='A')||(input[3][i]<='z'&&input[3][i]>='a'))&&input[2][i]==input[3][i]&&flag==0){
+      output_3=i;
+      flag++;
+      break;
+    }
+  }
+  
+  switch(output[0]){
+    case 'A':
+      printf("MON ");
+      break;
+    case 'B':
+      printf("TUE ");
+      break;
+    case 'C':
+      printf("WED ");
+      break;
+    case 'D':
+      printf("THU ");
+      break;
+    case 'E':
+      printf("FRI ");
+      break;
+    case 'F':
+      printf("SAT ");
+      break;
+    case 'G':
+      printf("SUN ");
+      break;
+  }
+  
+  if(output[1]<='9'&&output[1]>='0'){
+    printf("0%d:", output[1]-'0');
+  }else{
+    printf("%d:", output[1]-'A'+10);
+  }
+  
+  if(output_3<10){
+    printf("0%d\n", output_3);
+  }else{
+    printf("%d\n", output_3);
+  }
+  return 0;
+}
