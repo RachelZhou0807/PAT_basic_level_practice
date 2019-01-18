@@ -1,0 +1,15 @@
+//if I use python,emmm, it will be very easy. However, there also has some point we should mention.
+//0. we need to change the type of input (from str to int).
+//1. the different between '/' and '//'. / is divide the float type and it will return the a float number,, but // is used in 
+//int type and it will return a int as well. 
+
+//the python version:
+/*
+a=input()
+b=a.split()
+c=int(int(b[0])//int(b[1]))
+d=int(b[0])-c*int(b[1])
+print(c,d)
+*/
+
+//now let's look at C version:
