@@ -13,3 +13,25 @@ print(c,d)
 */
 
 //now let's look at C version:
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+  char A[1001];
+  int B;
+  scanf("%s%d", A, &B);
+  int len=strlen(A);
+  int Q=(A[0]-'0')/B;
+  if(len==1||Q>0){
+    printf("%d", Q);
+  }
+  int R=(A[0]-'0')%B;
+  int i;
+  for(i=1; i<len; i++){
+    Q=(R*10+A[i]-'0')/B;
+    printf("%d", Q);
+    R=(R*10+A[i]-'0')%B;
+  }
+  printf(" %d", R);
+  return 0;
+}
