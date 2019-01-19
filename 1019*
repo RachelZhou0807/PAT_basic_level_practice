@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp1(const void *a, const void *b){
+    return *(int*)b - *(int*)a;
+}
+
+int cmp2(const void *a, const void *b){
+    return *(int*)a - *(int*)b;
+}
+
+int main(int argc, char*argv[]){
+    int n;
+    scanf("%d", &n);
+    int num[4];
+    num[0]=n/1000;
+    num[1]=n/100%10;
+    num[2]=n/10%10;;
+    num[3]=n%10;
+    int copy[4];
+    int i;
+    if(num[0]==num[1]&&num[0]==num[2]&&num[0]==num[3]){
+        printf("%04d - %04d = 0000\n", n, n);
+    }else if(n==6174){
+        printf("7641 - 1467 = 6174\n");
+    }else{
+        while(n!=6174){
+            for(i=0; i<4; i++){
+                copy[i]=num[i];
+            }
+            qsort(num,4,sizeof(int),cmp1);
+            qsort(copy,4,sizeof(int),cmp2);
+            int max=num[0]*1000+num[1]*100+num[2]*10+num[3];
+            int min=copy[0]*1000+copy[1]*100+copy[2]*10+copy[3];
+            n=max-min;
+            printf("%04d - %04d = %04d\n", max, min, n);
+            num[0]=n/1000;
+            num[1]=n/100%10;
+            num[2]=n/10%10;;
+            num[3]=n%10;
+        }
+    }
+    return 0;
+}
