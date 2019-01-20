@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]){
+  char str[20000];
+  scanf("%s", str);
+  int len = strlen(str);
+  int i;
+  if(str[0]=='-'){
+    printf("-");
+  }
+  char sign;
+  char index[9999];
+  int count=0;
+  for(i=1; i<len; i++){
+    if(str[i]=='E'){
+      i++;
+      sign=str[i];
+      i++;
+      while(i<len){
+        index[count]=str[i];
+        count++;
+        i++;
+      }
+    }
+  }
+  int index_int = atoi(index);
+  if(index_int!=0){
+    if(sign=='-'){
+      printf("0.");
+      for(i=0; i<index_int-1; i++){
+        printf("0");
+      }
+      printf("%c", str[1]);
+      for(i=3; str[i]!='E'&&i<len; i++){
+        printf("%c", str[i]);
+      }
+    }else{
+      printf("%c", str[1]);
+      if(len-5-count>=index_int){
+        for(i=3; str[i]!='E'&&i<len; i++){
+          if(i==3+index_int){
+            printf(".");
+          }
+          printf("%c", str[i]);
+        }
+      }else{
+        for(i=3; str[i]!='E'&&i<len; i++){
+          printf("%c", str[i]);
+        }
+        for(i=0; i<index_int-1; i++){
+          printf("0");
+        }
+      }
+    }
+  }else{
+    printf("%c.", str[1]);
+    for(i=3; str[i]!='E'&&i<len; i++){
+        printf("%c", str[i]);
+      }
+  }
+  printf("\n");
+  return 0;
+}
