@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+typedef struct{
+    int add;
+    int data;
+    int next;
+    int flag;
+}Node;
+
+int main(void){
+    int begin;
+    int n, k;
+    scanf("%d%d%d", &begin, &n, &k);
+    int i;
+    Node node[100001];
+    for(i=0; i<n; i++){
+        scanf("%d%d%d", &node[i].add, &node[i].data, &node[i].next);
+        node[i].flag=0;
+    }
+    int array[n][2];
+    int end;
+    for(i=0; i<n; i++){
+        if(node[i].next==-1){
+            end=i;
+            break;
+        }
+    }
+    int be=begin;
+    int count=0;
+    while(node[end].flag==0){
+        for(i=0; i<n; i++){
+            if(node[i].add==be){
+                array[count][0]=node[i].data;
+                array[count][1]=node[i].add;
+                node[i].flag=1;
+                be=node[i].next;
+                count++;
+            }
+        }
+    }
+    int r=count%k;
+    int j;
+    int check=0;
+    for(i=0; i<count-r; i=i+k){
+        for(j=i+k-1; j>=i; j--){
+            if(check==0){
+                printf("%05d %d ", array[j][1], array[j][0]);
+                check=1;
+            }else{
+                printf("%05d\n%05d %d ", array[j][1], array[j][1], array[j][0]);
+            }
+        }
+    }
+    for(i=count-r; i<count; i++){
+        printf("%05d\n%05d %d ", array[i][1], array[i][1], array[i][0]);
+    }
+    printf("-1\n");
+    return 0;
+}
