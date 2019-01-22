@@ -7,7 +7,7 @@ typedef struct{
     int flag;
 }Node;
 
-int main(void){
+int main(int argc, char *argv[]){
     int begin;
     int n, k;
     scanf("%d%d%d", &begin, &n, &k);
