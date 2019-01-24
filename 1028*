@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct{
+    char name[10];
+    int year;
+    int month;
+    int day;
+}Info;
+
+int main(int argc, char argv[]){
+    int n;
+    scanf("%d", &n);
+    Info info[n];
+    int i; 
+    Info min, max;
+    min.year=2014;
+    min.month=9;
+    min.day=7;
+    max.year=1814;
+    max.month=9;
+    max.day=5;
+    int count=0;
+    for(i=0; i<n; i++){
+        scanf("%s %d/%d/%d", info[i].name, &info[i].year, &info[i].month, &info[i].day);
+        if(((info[i].year>1814) || (info[i].year==1814&&info[i].month>9) || (info[i].year==1814&&info[i].month==9&&info[i].day>=6)) && ((info[i].year<2014) || (info[i].year==2014&&info[i].month<9) || (info[i].year==2014&&info[i].month==9&&info[i].day<=6))){
+            count++;
+            if((info[i].year>max.year) || (info[i].year==max.year&&info[i].month>max.month) || (info[i].year==max.year&&info[i].month==max.month&&info[i].day>max.day)){
+                strcpy(max.name,info[i].name);
+                max.year=info[i].year;
+                max.month=info[i].month;
+                max.day=info[i].day;
+            }
+            if((info[i].year<min.year) || (info[i].year==min.year&&info[i].month<min.month) || (info[i].year==min.year&&info[i].month==min.month&&info[i].day<min.day)){
+                strcpy(min.name,info[i].name);
+                min.year=info[i].year;
+                min.month=info[i].month;
+                min.day=info[i].day;
+            }
+        }
+    }
+    if(count!=0){
+        printf("%d %s %s\n", count, min.name, max.name);
+    }else{
+        printf("0\n");
+    }
+    return 0;
+}
