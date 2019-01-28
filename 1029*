@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]){
+    char in[85];
+    char out[85];
+    char result[80];
+    scanf("%s %s", in, out);
+    int len_in=strlen(in);
+    int len_out=strlen(out);
+    int i;
+    for(i=0; i<len_in; i++){
+        in[i]=toupper(in[i]);
+    }
+    for(i=0; i<len_out; i++){
+        out[i]=toupper(out[i]);
+    }
+    int j,flag_1, k, flag_2;
+    int count=0;
+    for(i=0; i<len_in; i++){
+        flag_1=0;
+        for(j=0; j<len_out; j++){
+            if(out[j]==in[i]){
+                flag_1=1;
+                break;
+            }
+        }
+        if(flag_1==0){
+            flag_2=0;
+            for(k=0; k<count; k++){
+                if(in[i]==result[k]){
+                    flag_2=1;
+                    break;
+                }
+            }
+            if(flag_2==0){
+                result[count]=in[i];
+                count++;
+            }
+        }
+    }
+    result[count]='\0';
+    printf("%s\n", result);
+    return 0;
+}
