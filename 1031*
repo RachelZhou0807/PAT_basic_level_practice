@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main(int argc, char *arv[]){
+  int n;
+  scanf("%d", &n);
+  int weight[17]={7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+  char M[15]="10X98765432";
+  int i,j,sum,check,flag=0;
+  char input[n][20];
+  int remind[n];
+  int count=0;
+  for(i=0; i<n; i++){
+    scanf("%s", input[i]);
+    sum=0;
+    check=0;
+    for(j=0; j<17; j++){
+      if(input[i][j]<'0'||input[i][j]>'9'){
+        remind[count]=i;
+        count++;
+        flag=1;
+        check=1;
+        break;
+      }else{
+        sum+=(input[i][j]-'0')*weight[j];
+      }
+    }
+    if(input[i][17]!=M[sum%11]&&check==0){
+      remind[count]=i;
+      count++;
+      flag=1;
+    }
+  }
+  if(flag==0){
+    printf("All passed\n");
+  }else{
+    for(i=0; i<count; i++){
+      printf("%s\n", input[remind[i]]);
+    }
+  }
+  return 0;
+}
