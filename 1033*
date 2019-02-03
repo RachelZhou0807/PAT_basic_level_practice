@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+  char str1[50];
+  char str2[100005];
+  gets(str1);
+  gets(str2);
+  int hasshift=0;
+  if(strchr(str1, '+')){
+    hasshift=1;
+  }
+  int len=strlen(str2);
+  int i;
+  for(i=0; i<len; i++){
+    if(strchr(str1, toupper(str2[i]))){
+      continue;
+    }else if(hasshift==1&&isupper(str2[i])){
+      continue;
+    }else{
+      printf("%c", str2[i]);
+    }
+  }
+  printf("\n");
+  return 0;
+}
