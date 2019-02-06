@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int n;
+  char chr;
+  scanf("%d %c", &n, &chr);
+  int row;
+  if(n%2==0){
+    row=n/2;
+  }else{
+    row=n/2+1;
+  }
+  int i,j;
+  for(i=0; i<row; i++){
+    if(i==0||i==row-1){
+      for(j=0; j<n; j++){
+        printf("%c", chr);
+      }
+      printf("\n");
+    }else{
+      for(j=0; j<n; j++){
+        if(j==0||j==n-1){
+          printf("%c", chr);
+        }else{
+          printf(" ");
+        }
+      }
+      printf("\n");
+    }
+  }
+  return 0;
+}
