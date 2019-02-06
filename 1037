@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+    long g1, g2, g3, tmpg;
+    int s1, k1, s2, k2, s3, k3, tmps, tmpk;
+    scanf("%ld.%d.%d %ld.%d.%d", &g2, &s2, &k2, &g1, &s1, &k1);
+    if(g1>g2||(g1==g2&&s1>s2)||(g1==g2&&s1==s2&&k1>=k2)){
+        if(k1<k2){
+        k1+=29;
+        s1--;
+        }
+        k3=k1-k2;
+        if(s1<s2){
+            s1+=17;
+            g1--;
+        }
+        s3=s1-s2;
+        g3=g1-g2;
+    }else{
+        tmpg=g1;
+        tmps=s1;
+        tmpk=k1;
+        g1=g2;
+        g2=tmpg;
+        s1=s2;
+        s2=tmps;
+        k1=k2;
+        k2=tmpk;
+        if(k1<k2){
+        k1+=29;
+        s1--;
+        }
+        k3=k1-k2;
+        if(s1<s2){
+            s1+=17;
+            g1--;
+        }
+        s3=s1-s2;
+        g3=g1-g2;
+        printf("-");
+    }
+    printf("%ld.%d.%d\n", g3, s3, k3);
+}
