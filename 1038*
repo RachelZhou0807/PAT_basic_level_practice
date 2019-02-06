@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int count[101]={0};
+  int n;
+  scanf("%d", &n);
+  int i;
+  int mark;
+  for(i=0; i<n; i++){
+    scanf("%d", &mark);
+    count[mark]++;
+  }
+  int find;
+  scanf("%d", &find);
+  for(i=0; i<find; i++){
+    scanf("%d", &mark);
+    printf("%d%s", count[mark], i==find-1?"\n":" ");
+  }
+  return 0;
+}
