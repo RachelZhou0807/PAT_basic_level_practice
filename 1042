@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]){
+    char input[1005];
+    gets(input);
+    int len=strlen(input);
+    int i;
+    int count[26]={0};
+    for(i=0; i<len; i++){
+        input[i]=tolower(input[i]);
+        if(input[i]<='z'&&input[i]>='a'){
+            count[(int)input[i]-'a']++;
+        }
+    }
+    int max=0;
+    char find='a';
+    for(i=0; i<26; i++){
+        if(max<count[i]){
+            max=count[i];
+            find = (char)i+'a';
+        }
+    }
+    printf("%c %d\n", find, max);
+    return 0;
+}
