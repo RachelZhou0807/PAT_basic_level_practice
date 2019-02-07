@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int record[128]={0};
+  char chr;
+  while((chr=getchar())!='\n'){
+    record[(int)chr]++;
+  }
+  while((chr=getchar())!='\n'){
+    record[(int)chr]--;
+  }
+  int more=0, less=0;
+  int i;
+  for(i=0; i<128; i++){
+    if(record[i]>0){
+      more+=record[i];
+    }
+    if(record[i]<0){
+      less-=record[i];
+    }
+  }
+  if(less){
+    printf("No %d\n", less);
+  }else{
+    printf("Yes %d\n", more);
+  }
+  return 0;
+}
