@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  char info[n+1][15];
+  int i, j, postion;
+  char ID[15];
+  int num;
+  int number[n+1];
+  for(i=0; i<n; i++){
+    scanf("%s %d %d", ID, &postion, &num);
+    for(j=0; j<14; j++){
+      info[postion][j]=ID[j];
+    }
+    number[postion]=num;
+  }
+  int find;
+  scanf("%d", &find);
+  int find_postion[find];
+  for(i=0; i<find; i++){
+    scanf("%d", &find_postion[i]);
+  }
+  for(i=0; i<find; i++){
+    for(j=0; j<14; j++){
+      printf("%c", info[find_postion[i]][j]);
+    }
+    printf(" %d\n", number[find_postion[i]]);
+  }
+  return 0;
+}
