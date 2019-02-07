@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    int P=0;
+    int A=0;
+    int T=0;
+    int e=0;
+    int s=0;
+    int t=0;
+    char c;
+    while((c=getchar())!='\n'){
+		if(c=='P')	P++;
+		if(c=='A')	A++;
+		if(c=='T')	T++;
+		if(c=='e')	e++;
+		if(c=='s')	s++;
+		if(c=='t')	t++;
+	}
+    while(P>0||A>0||T>0||e>0||s>0||t>0){
+        if(P>0){
+            printf("P");
+            P--;
+        }
+        if(A>0){
+            printf("A");
+            A--;
+        }
+        if(T>0){
+            printf("T");
+            T--;
+        }
+        if(e>0){
+            printf("e");
+            e--;
+        }
+        if(s>0){
+            printf("s");
+            s--;
+        }
+        if(t>0){
+            printf("t");
+            t--;
+        }
+    }
+    printf("\n");
+    return 0;
+}
