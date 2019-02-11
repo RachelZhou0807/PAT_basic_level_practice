@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  int input[1001]={0};
+  int i;
+  int team, member, mark;
+  for(i=0; i<n; i++){
+    scanf("%d-%d %d", &team, &member, &mark);
+    input[team]+=mark;
+  }
+  int max=-1, max_team=-1;
+  for(i=0; i<1001; i++){
+    if(max<input[i]){
+      max=input[i];
+      max_team=i;
+    }
+  }
+  printf("%d %d", max_team, max);
+  return 0;
+}
