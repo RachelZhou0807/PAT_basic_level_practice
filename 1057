@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(int argc, char *argv[]){
+  int sum=0;
+  char in;
+  while((in=getchar())!='\n'){
+    in=tolower(in);
+    if(in<'a'||in>'z'){
+      continue;
+    }else{
+      sum+=(int)(in-'a')+1;
+    }
+  }
+  int one=0, zero=0;
+  while(sum!=0){
+    if(sum%2==1){
+      one++;
+    }else{
+      zero++;
+    }
+    sum/=2;
+  }
+  printf("%d %d\n", zero, one);
+  return 0;
+}
