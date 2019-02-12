@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int cmp(const void *a, const void *b){
+  return *(float*)b - *(float *)a;
+}
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  float out[n];
+  int a, b;
+  int i;
+  for(i=0; i<n; i++){
+    scanf("%d %d", &a, &b);
+    out[i]=sqrt(a*a+b*b);
+  }
+  qsort(out, n, sizeof(float), cmp);
+  printf("%.2f\n", out[0]);
+  return 0;
+}
