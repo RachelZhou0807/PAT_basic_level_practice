@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  int i, j;
+  char a, b;
+  for(i=0; i<n; i++){
+    for(j=0; j<4; j++){
+      scanf(" %c-%c ", &a, &b);
+      if(b=='T'){
+        printf("%d", (int)(a-'A'+1));
+      }
+    }
+  }
+  printf("\n");
+  return 0;
+}
