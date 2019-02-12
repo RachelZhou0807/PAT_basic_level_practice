@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int m, n, a, b, k;
+  scanf("%d %d %d %d %d", &m, &n, &a, &b, &k);
+  int i, j;
+  int input[m][n];
+  for(i=0; i<m; i++){
+    for(j=0; j<n; j++){
+      scanf("%d", &input[i][j]);
+    }
+  }
+  for(i=0; i<m; i++){
+    for(j=0; j<n; j++){
+      if(input[i][j]>=a&&input[i][j]<=b){
+        printf("%03d%s", k, j==n-1?"\n":" ");
+      }else{
+        printf("%03d%s", input[i][j], j==n-1?"\n":" ");
+      }
+    }
+  }
+  return 0;
+}
