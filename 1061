@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  int n, m;
+  scanf("%d %d", &n, &m);
+  int mark[m];
+  int i, j, ans;
+  for(i=0; i<m; i++){
+    scanf("%d", &mark[i]);
+  }
+  int answer[m];
+  for(i=0; i<m; i++){
+    scanf("%d", &answer[i]);
+  }
+  int student[n];
+  for(i=0; i<n; i++){
+    student[i]=0;
+    for(j=0; j<m; j++){
+      scanf("%d", &ans);
+      if(ans==answer[j]){
+        student[i]+=mark[j];
+      }
+    }
+  }
+  for(i=0; i<n; i++){
+    printf("%d\n", student[i]);
+  }
+  return 0;
+}
