@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    int n;
+    scanf("%d", &n);
+    int i, j;
+    char a[100], b[100];
+    double check, sum=0;
+    int count=0;
+    int lena, lenb, flag;
+    for(i=0; i<n; i++){
+        flag=0;
+        scanf("%s", a);
+        sscanf(a, "%lf", &check);
+        sprintf(b, "%.2lf", check);
+        lena=strlen(a);
+        lenb=strlen(b);
+        if(lena>lenb){
+            flag=1;
+        }else{
+            for(j=0; j<lena; j++){
+                if(a[j]!=b[j]){
+                    flag=1;
+                    break;
+                }
+            }
+            if(check<-1000||check>1000){
+                flag=1;
+            }
+        }
+        if(flag==0){
+            sum+=check;
+            count++;
+        }else{
+            printf("ERROR: %s is not a legal number\n", a);
+        }
+    }
+    if(count==0){
+        printf("The average of 0 numbers is Undefined\n");
+    }else if(count==1){
+        printf("The average of 1 number is %.2lf\n", sum);
+    }else{
+        printf("The average of %d numbers is %.2lf\n", count, (double)sum/count);
+    }
+    return 0;
+}
