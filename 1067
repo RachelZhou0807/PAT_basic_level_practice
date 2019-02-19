@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    char password[25];
+    int n;
+    scanf("%s %d", password, &n);
+    int i;
+    char in[100];
+    for(i=0; i<n; i++){
+        getchar();
+        scanf("%[^\n]", in);
+        if(strcmp(in, "#")==0){
+            break;
+        }else if(strcmp(in, password)==0){
+            printf("Welcome in\n");
+            break;
+        }else{
+            printf("Wrong password: %s\n", in);
+            if(i==n-1){
+                printf("Account locked\n");
+            }
+        }
+    }
+    return 0;
+}
