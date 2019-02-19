@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+  char symbols[3][10][5];
+  int i, j, index;
+  char c;
+  int check[3];
+  for(i=0; i<3; i++){
+    for(index=0; (c=getchar())!='\n'; ){
+      if(c=='['){
+        scanf("%[^]]", symbols[i][index]);
+        index++;
+      }
+    }
+    check[i]=index;
+  }
+  int n, m[5];
+  scanf("%d", &n);
+  for(i=0; i<n; i++){
+    for(j=0; j<5; j++){
+      scanf("%d", &m[j]);
+    }
+    if(m[0]>0&&m[0]<=check[0]&&m[1]>0&&m[1]<=check[1]&&m[2]>0&&m[2]<=check[2]&&m[3]>0&&m[3]<=check[1]&&m[4]>0&&m[4]<=check[0]){
+      printf("%s(%s%s%s)%s\n", symbols[0][m[0]-1], symbols[1][m[1]-1], symbols[2][m[2]-1], symbols[1][m[3]-1], symbols[0][m[4]-1]);
+    }else{
+      printf("Are you kidding me? @\\/@\n");
+    }
+  }
+  return 0;
+}
