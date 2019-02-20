@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    int m, n, s;
+    scanf("%d %d %d", &m, &n, &s);
+    char array[m][25], in[25];
+    int i, j, r=0, count=0, flag=0;
+    for(i=0; i<m; i++){
+        scanf("%s", in);
+        if(i==s+count*n+r-1){
+            flag=0;
+            for(j=0; j<count; j++){
+                if(strcmp(in, array[j])==0){
+                    flag=1;
+                    r++;
+                    break;
+                }
+            }
+            if(flag==0){
+                strcpy(array[count], in);
+                count++;
+                printf("%s\n", in);
+            }
+        }
+    }
+    if(count==0){
+        printf("Keep going...\n");
+    }
+    return 0;
+}
