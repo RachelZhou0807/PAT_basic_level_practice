@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+    int n, m;
+    scanf("%d %d", &n, &m);
+    int wrong[100][5]={{0}};
+    int mark[m], no, check[5];
+    int i, j, k;
+    char ans[m][20], in[20];
+    for(i=0; i<m; i++){
+        scanf("%d %d %[^\n]", &mark[i], &no, ans[i]);
+    }
+    float grade[n];
+    int flag;
+    for(i=0; i<n; i++){
+        grade[i]=0;
+        for(j=0; j<m; j++){
+            flag=0;
+            getchar();
+            memset(check, 0, 5*sizeof(int));
+            scanf("(%[^)]", in);
+            getchar();
+            if(in[0]==ans[j][0]){
+                if(strcmp(in, ans[j])==0){
+                    grade[i]+=mark[j];
+                    continue;
+                }
+            }
+            for(k=0; k<((int)ans[j][0]-'0'); k++){
+                check[((int)ans[j][2*(k+1)]-'a')]=1;
+            }
+            for(k=0; k<((int)in[0]-'0'); k++){
+                if(check[((int)in[2*(k+1)]-'a')]==0){
+                    wrong[j][((int)in[2*(k+1)]-'a')]++;
+                    flag=1;
+                }else{
+                    check[((int)in[2*(k+1)]-'a')]=2;
+                }
+            }
+            for(k=0; k<((int)ans[j][0]-'0'); k++){
+                if(check[((int)ans[j][2*(k+1)]-'a')]==1){
+                    wrong[j][((int)ans[j][2*(k+1)]-'a')]++;
+                }
+            }
+            if(flag==0){
+                grade[i]+=0.5*mark[j];
+            }
+        }
+        printf("%.1f\n", grade[i]);
+    }
+    int max=-1;
+    for(i=0; i<m; i++){
+        for(j=0; j<5; j++){
+            if(max<wrong[i][j]){
+                max=wrong[i][j];
+            }
+        }
+    }
+    if(max==0){
+        printf("Too simple\n");
+    }else{
+        for(i=0; i<m; i++){
+            for(j=0; j<5; j++){
+                if(wrong[i][j]==max){
+                    printf("%d %d-%c\n", max, i+1, (char)j+'a');
+                }
+            }
+        }
+    }
+    return 0;
+}
