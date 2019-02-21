@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+int ispalindromic(char a[], int len){
+    int i, flag=1;;
+    for(i=0; i<len/2; i++){
+        if(a[i]!=a[len-i-1]){
+            flag=0;
+            break;
+        }
+    }
+    return flag;
+}
+
+void reverse(char a[], char b[], int len){
+    int i;
+    for(i=0; i<len; i++){
+        b[len-i-1]=a[i];
+    }
+}
+
+void add(char a[], char b[], int len){
+    int i, sum=0, carry=0;
+    for(i=len-1; i>=0; i--){
+        sum=a[i]-'0'+b[i]-'0'+carry;
+        a[i]=(char)sum%10+'0';
+        carry=sum/10;
+    }
+    if(carry){
+        memmove(a+1, a, len+1);
+        a[0]=(char)carry+'0';
+    }
+}
+
+int main(int argc, char *argv[]){
+    char a[2000]={0}, b[2000]={0};
+    scanf("%s", a);
+    int i;
+    int len=strlen(a);
+    for(i=0; i<10&&ispalindromic(a, len)==0; i++){
+        reverse(a, b, len);
+        printf("%s + %s = ", a, b);
+        add(a, b, len);
+        printf("%s\n", a);
+        len=strlen(a);
+    }
+    if(i==10){
+        printf("Not found in 10 iterations.\n");
+    }else{
+        printf("%s is a palindromic number.\n", a);
+    }
+}
