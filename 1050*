@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b){
+    return *(int *)b - *(int *)a;
+}
+
+int main(int argc, char *argv[]){
+    int h;
+    scanf("%d", &h);
+    int in[h], i, j;
+    for(i=0; i<h; i++){
+        scanf("%d", &in[i]);
+    }
+    qsort(in, h, sizeof(int), cmp);
+    int m, n;
+    for(m=1; !(m*m>=h&&h%m==0); m++);
+    n=h/m;
+    int out[m][n];
+    int x=-1, y=0, index=0;
+    int horizontal=n, virtical=m;
+    while(horizontal>0&&virtical>0){
+        for(i=0; i<horizontal&&virtical>0; i++){
+            x++;
+            out[y][x]=in[index];
+            index++;
+        }
+        virtical--;
+        for(i=0; i<virtical&&horizontal>0; i++){
+            y++;
+            out[y][x]=in[index];
+            index++;
+        }
+        horizontal--;
+        for(i=0; i<horizontal&&virtical>0; i++){
+            x--;
+            out[y][x]=in[index];
+            index++;
+        }
+        virtical--;
+        for(i=0; i<virtical&&horizontal>0; i++){
+            y--;
+            out[y][x]=in[index];
+            index++;
+        }
+        horizontal--;
+    }
+    for(i=0; i<m; i++){
+        for(j=0; j<n; j++){
+            printf("%d%s", out[i][j], j==n-1?"\n":" ");
+        }
+    }
+    return 0;
+}
