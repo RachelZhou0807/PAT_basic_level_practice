@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+    int n;
+    scanf("%d", &n);
+    int in[n], i;
+    for(i=0; i<n; i++){
+        scanf("%d", &in[i]);
+    }
+    int lmax[n], rmin[n];
+    int max=in[0], min=in[n-1];
+    for(i=0; i<n; i++){
+        if(max<in[i]){
+            max=in[i];
+        }
+        lmax[i]=max;
+    }
+    for(i=n-1; i>=0; i--){
+        if(min>in[i]){
+            min=in[i];
+        }
+        rmin[i]=min;
+    }
+    int count=0;
+    int out[n];
+    for(i=0; i<n; i++){
+        if(lmax[i]==in[i]&&rmin[i]==in[i]){
+            out[count]=in[i];
+            count++;
+        }
+    }
+    printf("%d\n", count);
+    for(i=0; i<count; i++){
+        printf("%s%d", i==0?"":" ", out[i]);
+    }
+    printf("\n");
+}
