@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void *a, const void *b){
+    return *(int *)b - *(int *)a;
+}
+
+int main(int argc, char *argv[]){
+    int n;
+    scanf("%d", &n);
+    int i, in[n];
+    for(i=0; i<n; i++){
+        scanf("%d", &in[i]);
+    }
+    qsort(in, n, sizeof(int), cmp);
+    int e;
+    for(e=0; e<n&&in[e]>e+1; e++);
+    printf("%d\n", e);
+    return 0;
+}
