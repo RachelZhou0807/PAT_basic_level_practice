@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int array[100000]={0};
+
+int cmp(const void *a, const void *b){
+    return *(int *)a - *(int *)b;
+}
+
+int main(int argc, char *argv[]){
+    int n;
+    scanf("%d", &n);
+    int i, in, in1, in2, couple[n][2];
+    for(i=0; i<n; i++){
+        scanf("%d %d", &in1, &in2);
+        couple[i][0]=in1;
+        couple[i][1]=in2;
+        array[in1]=1;
+        array[in2]=1;
+    }
+    int n2;
+    scanf("%d", &n2);
+    int out[n], index=0;
+    for(i=0; i<n2; i++){
+        scanf("%d", &in);
+        if(array[in]!=1){
+            out[index]=in;
+            index++;
+        }else{
+            array[in]=2;
+        }
+    }
+    for(i=0; i<n; i++){
+        if(array[couple[i][0]]==2&&array[couple[i][1]]==1){
+            out[index]=couple[i][0];
+            index++;
+        }
+        if(array[couple[i][0]]==1&&array[couple[i][1]]==2){
+            out[index]=couple[i][1];
+            index++;
+        }
+    }
+    qsort(out, index, sizeof(in), cmp);
+    printf("%d\n", index);
+    for(i=0; i<index; i++){
+        printf("%05d%s", out[i], i==index-1?"\n":" ");
+    }
+    return 0;
+}
