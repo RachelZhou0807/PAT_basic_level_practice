@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+  int n;
+  scanf("%d", &n);
+  getchar();
+  char in[85];
+  int i, j, len;
+  int number, chr, flag;
+  for(i=0; i<n; i++){
+    gets(in);
+    len=strlen(in);
+    number=0, chr=0, flag=0;
+    if(len<6){
+      printf("Your password is tai duan le.\n");
+      continue;
+    }else{
+      for(j=0;j<len; j++){
+        if((in[j]<='9'&&in[j]>='0')||(in[j]<='Z'&&in[j]>='A')||(in[j]<='z'&&in[j]>='a')||in[j]=='.'){
+          if(in[j]<='9'&&in[j]>='0'){
+            number=1;
+          }
+          if((in[j]<='Z'&&in[j]>='A')||(in[j]<='z'&&in[j]>='a')){
+            chr=1;
+          }
+        }else{
+          printf("Your password is tai luan le.\n");
+          flag=1;
+          break;
+        }
+      }
+      if(flag!=1){
+        if(number&&chr){
+          printf("Your password is wan mei.\n");
+        }else{
+          if(number){
+            printf("Your password needs zi mu.\n");
+          }else{
+            printf("Your password needs shu zi.\n");
+          }
+        }
+      }
+    }
+  }
+  return 0;
+}
