@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+    int n, i, j, k;
+    char array[2][100000];
+    scanf("%s %d", array[0], &n);
+    char pre, cur;
+    int count, help;
+    for(i=0; i<n-1; i++){
+        j=0, k=0;
+        count=1;
+        pre=array[i%2][0];
+        while(array[i%2][j]!='\0'){
+            if(i%2==0){
+                help=1;
+            }else{
+                help=0;
+            }
+            j++;
+            cur=array[i%2][j];
+            if(pre==cur){
+                count++;
+            }else{
+                array[help][k]=pre;
+                k++;
+                array[help][k]=(char)(count+'0');
+                k++;
+                pre=cur;
+                count=1;
+            }
+        }
+        array[help][k]='\0';
+    }
+    printf("%s\n", array[help]);
+    return 0;
+}
