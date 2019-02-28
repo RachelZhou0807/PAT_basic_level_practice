@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[]){
+  int a, b;
+  scanf("%d %d", &a, &b);
+  long sum = a*b;
+  char out[1000000]={0};
+  sprintf(out, "%ld", sum);
+  int len = strlen(out);
+  int i;
+  while(out[len-1]=='0'){
+    len--;
+  }
+  for(i=len-1; i>=0; i--){
+    printf("%c", out[i]);
+  }
+  printf("\n");
+  return 0;
+}
