@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+    int n;
+    scanf("%d", &n);
+    int i, check[10400]={0};
+    int count=0;
+    for(i=1; i<=n; i++){
+        if(check[i/2+i/3+i/5]==0){
+            count++;
+            check[i/2+i/3+i/5]=1;
+        }
+    }
+    printf("%d\n", count);
+}
