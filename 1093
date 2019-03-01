@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+char str1[1000005];
+char str2[1000005];
+
+int main(int argc, char *argv[]){
+    gets(str1);
+    gets(str2);
+    int check[128]={0};
+    int len1=strlen(str1);
+    int len2=strlen(str2);
+    int i;
+    for(i=0; i<len1; i++){
+        if(check[str1[i]]==0){
+            printf("%c", str1[i]);
+            check[str1[i]]++;
+        }
+    }
+    for(i=0; i<len2; i++){
+        if(check[str2[i]]==0){
+            printf("%c", str2[i]);
+            check[str2[i]]++;
+        }
+    }
+    printf("\n");
+    return 0;
+}
